@@ -1,6 +1,5 @@
-bufferLog: list[int] = []  # memoria
+bufferLog: list[int] = [7, 14, 21, 28, 35]  # memoria
 logDisco: list[int] = [7, 14, 21, 28, 35]  # disco
-updateList: list[int] = []
 aux = ''
 
 while aux != 's':
@@ -15,31 +14,23 @@ while aux != 's':
     aux = input("Escolha uma opcao:\n")
 
     if aux == 'a':
-        print("Visualizando buffer do log\n")
-        print(bufferLog, "\n")
+        print("Visualizando buffer do log")
+        print(bufferLog)
     elif aux == 'b':
-        print("Visualizando log do disco\n")
-        print(logDisco, "\n")
+        print("Visualizando log do disco")
+        print(logDisco)
     elif aux == 'c':
         i = input("Digite a posicao do elemento: ")
         iInt = int(i) - 1
         newValue = input("Digite novo valor: ")
         newValueInt = int(newValue)
-        updateList.insert(iInt, newValueInt)
-
-        # i = input("Digite a posicao do elemento: ")
-        # iInt = int(i) - 1
-        # newValue = input("Digite novo valor: ")
-        # newValueInt = int(newValue)
-        # bufferLog[iInt] = newValueInt
+        bufferLog[iInt] = newValueInt
 
     elif aux == 'd':
         logDisco = bufferLog
     elif aux == 'e':
         bufferLog.clear()
-    elif aux == 'f':
-        print("Visualizando buffer do log\n")
-        print(updateList, "\n")
+    # elif aux == 'f':
 
     else:
         print("Programa encerrado")
