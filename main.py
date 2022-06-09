@@ -1,4 +1,4 @@
-bufferLog: list[int] = [7, 14, 21, 28, 35]  # memoria
+bufferLog: list[int] = []  # memoria
 logDisco: list[int] = [7, 14, 21, 28, 35]  # disco
 aux = ''
 
