@@ -1,10 +1,25 @@
-bufferLog: list[int] = []  # memoria
-logDisco: list[int] = [7, 14, 21, 28, 35]  # disco
-updateList: list[int] = []
+logMemoria = []  # bufferLog
+logDisco: list[int] = []  # Log do disco
+bufferDados: list[int] = []  # Buffer de dados
+discoDados: list[int] = [7, 14, 21, 28, 35]  # Dados do disco
 aux = ''
 
-while aux != 's':
 
+def viewLogMemoria():
+    print("Visualizando Log da memória\n")
+    print(logMemoria, "\n")
+def viewLogDisco():
+    print("Visualizando Log do disco\n")
+    print(logDisco, "\n")
+def update():
+
+
+
+
+
+
+while aux != 's':
+    t = input("Escolha a trasação: ")
     print("a - Visualizar buffer do Log")
     print("b - Visualizar log do disco")
     print("c - Update")
@@ -15,17 +30,22 @@ while aux != 's':
     aux = input("Escolha uma opcao:\n")
 
     if aux == 'a':
-        print("Visualizando buffer do log\n")
-        print(bufferLog, "\n")
+        viewLogMemoria()
     elif aux == 'b':
-        print("Visualizando log do disco\n")
-        print(logDisco, "\n")
+        viewLogDisco()
     elif aux == 'c':
         i = input("Digite a posicao do elemento: ")
         iInt = int(i) - 1
-        newValue = input("Digite novo valor: ")
+        newValue = input("Digite a idade atualizada: ")
         newValueInt = int(newValue)
-        updateList.insert(iInt, newValueInt)
+        JlogMemoria.append([t, "idade", discoDados[iInt], newValueInt])
+        # bufferDados[iInt] = newValueInt
+
+        # i = input("Digite a posicao do elemento: ")
+        # iInt = int(i) - 1
+        # newValue = input("Digite novo valor: ")
+        # newValueInt = int(newValue)
+        # updateList.insert(iInt, newValueInt)
 
         # i = input("Digite a posicao do elemento: ")
         # iInt = int(i) - 1
@@ -33,13 +53,11 @@ while aux != 's':
         # newValueInt = int(newValue)
         # bufferLog[iInt] = newValueInt
 
-    elif aux == 'd':
-        logDisco = bufferLog
-    elif aux == 'e':
-        bufferLog.clear()
-    elif aux == 'f':
-        print("Visualizando buffer do log\n")
-        print(updateList, "\n")
+    # elif aux == 'd':
+    # logDisco = bufferLog
+    # elif aux == 'e':
+    # bufferLog.clear()
+    # elif aux == 'f':
 
     else:
         print("Programa encerrado")
