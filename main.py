@@ -1,31 +1,51 @@
 logMemoria = []  # bufferLog
-logDisco: list[int] = []  # Log do disco
-bufferDados: list[int] = []  # Buffer de dados
-discoDados: list[int] = [7, 14, 21, 28, 35]  # Dados do disco
+logDisco = []  # Log do disco
+bufferDados = []  # Buffer de dados da memoria
+discoDados = [7, 14, 21, 28, 35]  # Dados do disco
 aux = ''
 
 
 def viewLogMemoria():
     print("Visualizando Log da memória\n")
     print(logMemoria, "\n")
+
+
 def viewLogDisco():
     print("Visualizando Log do disco\n")
     print(logDisco, "\n")
+def viewBufferDadosMemoria():
+    print("Visualizando Dados da memoria\n")
+    print(bufferDados, "\n")
 def update():
+    t = input("Escolha a transação")
+    i = input("Digite a posicao do elemento: ")
+    iInt = int(i) - 1
+    newValue = input("Digite a idade atualizada: ")
+    newValueInt = int(newValue)
+    logMemoria.append([t, "idade", discoDados[iInt], newValueInt])
+    bufferDados.append(newValue)
 
-
-
+def checkpoint():
+    logDisco.append(logMemoria)
+    discoDados.append(bufferDados)
+def failure():
+    logMemoria.clear()
+    logDisco.clear()
+    bufferDados.clear()
+def commit():
+    logDisco.append(logMemoria)
+    logMemoria.clear()
 
 
 
 while aux != 's':
-    t = input("Escolha a trasação: ")
     print("a - Visualizar buffer do Log")
     print("b - Visualizar log do disco")
-    print("c - Update")
-    print("d - Checkpoint")
-    print("e - Falha")
-    print("f - Commit")
+    print("c - Visualizar Dados da memoria")
+    print("d - Update")
+    print("e - Checkpoint")
+    print("f - Falha")
+    print("g - Commit")
     print("s - Sair do programa")
     aux = input("Escolha uma opcao:\n")
 
@@ -34,12 +54,7 @@ while aux != 's':
     elif aux == 'b':
         viewLogDisco()
     elif aux == 'c':
-        i = input("Digite a posicao do elemento: ")
-        iInt = int(i) - 1
-        newValue = input("Digite a idade atualizada: ")
-        newValueInt = int(newValue)
-        JlogMemoria.append([t, "idade", discoDados[iInt], newValueInt])
-        # bufferDados[iInt] = newValueInt
+        viewBufferDadosMemoria()
 
         # i = input("Digite a posicao do elemento: ")
         # iInt = int(i) - 1
@@ -53,11 +68,15 @@ while aux != 's':
         # newValueInt = int(newValue)
         # bufferLog[iInt] = newValueInt
 
-    # elif aux == 'd':
+    elif aux == 'd':
+        update()
     # logDisco = bufferLog
-    # elif aux == 'e':
-    # bufferLog.clear()
-    # elif aux == 'f':
+    elif aux == 'e':
+        checkpoint()
+    elif aux == 'f':
+        failure()
 
+    elif aux == 'g':
+        commit()
     else:
         print("Programa encerrado")
