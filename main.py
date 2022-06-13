@@ -23,7 +23,7 @@ def viewBufferDadosMemoria():
 
 
 def update():
-    t = input("Escolha a transação")
+    t = input("Escolha a transação: ")
     i = input("Digite a posicao do elemento: ")
     iInt = int(i) - 1
     newValue = input("Digite a idade atualizada: ")
