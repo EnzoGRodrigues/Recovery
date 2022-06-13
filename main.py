@@ -1,6 +1,8 @@
+from typing import List, Any
+
 logMemoria = []  # bufferLog
 logDisco = []  # Log do disco
-bufferDados = []  # Buffer de dados da memoria
+bufferDados: list[Any] = []  # Buffer de dados da memoria
 discoDados = [7, 14, 21, 28, 35]  # Dados do disco
 aux = ''
 
@@ -13,9 +15,13 @@ def viewLogMemoria():
 def viewLogDisco():
     print("Visualizando Log do disco\n")
     print(logDisco, "\n")
+
+
 def viewBufferDadosMemoria():
     print("Visualizando Dados da memoria\n")
     print(bufferDados, "\n")
+
+
 def update():
     t = input("Escolha a transação")
     i = input("Digite a posicao do elemento: ")
@@ -25,17 +31,21 @@ def update():
     logMemoria.append([t, "idade", discoDados[iInt], newValueInt])
     bufferDados.append(newValue)
 
+
 def checkpoint():
     logDisco.append(logMemoria)
     discoDados.append(bufferDados)
+
+
 def failure():
     logMemoria.clear()
     logDisco.clear()
     bufferDados.clear()
+
+
 def commit():
     logDisco.append(logMemoria)
     logMemoria.clear()
-
 
 
 while aux != 's':
