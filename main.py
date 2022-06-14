@@ -1,6 +1,6 @@
 from typing import List, Any
 
-logMemoria = [1, 2, 3, 4, 5]  # bufferLog
+logMemoria = []  # bufferLog
 logDisco = []  # Log do disco
 bufferDados: list[Any] = []  # Buffer de dados da memoria
 discoDados = [7, 14, 21, 28, 35]  # Dados do disco
