@@ -47,15 +47,8 @@ def failure():
 
 
 def commit():
-    i = 0
-    t = int(input("Numero da transação que deseja commitar: "))
-    for x in logMemoria:
-        if t in x:
-            i = +1
-            break
-    logDisco.append(logMemoria[t])
-    # logDisco.append(logMemoria)d
-    # logMemoria.clear()
+    t = input("Digite a transação que deseja commitar: ")
+    logDisco.append([s for s in logMemoria if t in s])
 
 
 while aux != 's':
