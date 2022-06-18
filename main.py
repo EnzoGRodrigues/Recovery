@@ -1,7 +1,7 @@
 from typing import List, Any
 
 logMemoria = []  # bufferLog
-logDisco = []  # Log do disco
+logDisco: list[Any] = []  # Log do disco
 bufferDados: list[Any] = [7, 14, 21, 28, 35]  # Buffer de dados da memoria
 discoDados = [7, 14, 21, 28, 35]  # Dados do disco
 aux = None
@@ -17,23 +17,27 @@ def viewLogDisco():
     print(logDisco, "\n")
 
 
-def viewBufferDadosMemoria():
+def viewDadosMemoria():
     print("Visualizando Dados da memoria\n")
     print(bufferDados, "\n")
+
+
+def viewDadosDisco():
+    print("Visualizando Dados da memoria\n")
+    print(discoDados, "\n")
 
 
 def update():
     t = input("Escolha a transação: ")
     i = int(input("Digite a posicao do elemento: "))
-    newValue = input("Digite a idade atualizada: ")
-    newValueInt = int(newValue)
-    logMemoria.append([t, i, "idade", discoDados[i-1], newValueInt])
-    bufferDados.append(newValue)
+    newValue = int(input("Digite a idade atualizada: "))
+    logMemoria.append([t, i, "idade", discoDados[i - 1], newValue])
+    bufferDados[i - 1] = newValue
 
 
 def checkpoint():
-    logDisco.append(logMemoria)
-    discoDados.append(bufferDados)
+    logDisco[:] = logMemoria[:]
+    discoDados[:] = bufferDados[:]
 
 
 def failure():
@@ -44,13 +48,13 @@ def failure():
 
 def commit():
     i = 0
-    t = input("Escolha a transação para commitar: ")
+    t = int(input("Numero da transação que deseja commitar: "))
     for x in logMemoria:
         if t in x:
-            i=+1
+            i = +1
             break
-    logDisco.append(logMemoria[i])
-    # logDisco.append(logMemoria)
+    logDisco.append(logMemoria[t])
+    # logDisco.append(logMemoria)d
     # logMemoria.clear()
 
 
@@ -58,10 +62,11 @@ while aux != 's':
     print("a - Visualizar buffer do Log")
     print("b - Visualizar log do disco")
     print("c - Visualizar Dados da memoria")
-    print("d - Update")
-    print("e - Checkpoint")
-    print("f - Falha")
-    print("g - Commit")
+    print("d - Visualizar Dados do disco")
+    print("e - Update")
+    print("f - Checkpoint")
+    print("g - Falha")
+    print("h - Commit")
     print("s - Sair do programa")
     aux = input("Escolha uma opcao:\n")
 
@@ -70,29 +75,16 @@ while aux != 's':
     elif aux == 'b':
         viewLogDisco()
     elif aux == 'c':
-        viewBufferDadosMemoria()
-
-        # i = input("Digite a posicao do elemento: ")
-        # iInt = int(i) - 1
-        # newValue = input("Digite novo valor: ")
-        # newValueInt = int(newValue)
-        # updateList.insert(iInt, newValueInt)
-
-        # i = input("Digite a posicao do elemento: ")
-        # iInt = int(i) - 1
-        # newValue = input("Digite novo valor: ")
-        # newValueInt = int(newValue)
-        # bufferLog[iInt] = newValueInt
-
+        viewDadosMemoria()
     elif aux == 'd':
-        update()
-    # logDisco = bufferLog
+        viewDadosDisco()
     elif aux == 'e':
-        checkpoint()
+        update()
     elif aux == 'f':
-        failure()
-
+        checkpoint()
     elif aux == 'g':
+        failure()
+    elif aux == 'h':
         commit()
     else:
         print("Programa encerrado")
