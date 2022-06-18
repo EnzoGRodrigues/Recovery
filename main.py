@@ -4,6 +4,8 @@ logMemoria = []  # bufferLog
 logDisco: list[Any] = []  # Log do disco
 bufferDados: list[Any] = [7, 14, 21, 28, 35]  # Buffer de dados da memoria
 discoDados = [7, 14, 21, 28, 35]  # Dados do disco
+redo = []
+undo = []
 aux = None
 
 
@@ -48,19 +50,21 @@ def failure():
 
 def commit():
     t = input("Digite a transação que deseja commitar: ")
-    logDisco.append([s for s in logMemoria if t in s])
-
+    logDisco.append([x for x in logMemoria if t in x])
 
 while aux != 's':
     print("a - Visualizar buffer do Log")
     print("b - Visualizar log do disco")
     print("c - Visualizar Dados da memoria")
     print("d - Visualizar Dados do disco")
+    print("-------------------------------")
     print("e - Update")
     print("f - Checkpoint")
     print("g - Falha")
     print("h - Commit")
+    print("-------------------------------")
     print("s - Sair do programa")
+    print("-------------------------------")
     aux = input("Escolha uma opcao:\n")
 
     if aux == 'a':
