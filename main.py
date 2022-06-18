@@ -2,9 +2,9 @@ from typing import List, Any
 
 logMemoria = []  # bufferLog
 logDisco = []  # Log do disco
-bufferDados: list[Any] = []  # Buffer de dados da memoria
+bufferDados: list[Any] = [7, 14, 21, 28, 35]  # Buffer de dados da memoria
 discoDados = [7, 14, 21, 28, 35]  # Dados do disco
-aux = ''
+aux = None
 
 
 def viewLogMemoria():
@@ -24,11 +24,10 @@ def viewBufferDadosMemoria():
 
 def update():
     t = input("Escolha a transação: ")
-    i = input("Digite a posicao do elemento: ")
-    iInt = int(i) - 1
+    i = int(input("Digite a posicao do elemento: "))
     newValue = input("Digite a idade atualizada: ")
     newValueInt = int(newValue)
-    logMemoria.append([t, "idade", discoDados[iInt], newValueInt])
+    logMemoria.append([t, i, "idade", discoDados[i-1], newValueInt])
     bufferDados.append(newValue)
 
 
@@ -44,8 +43,15 @@ def failure():
 
 
 def commit():
-    logDisco.append(logMemoria)
-    logMemoria.clear()
+    i = 0
+    t = input("Escolha a transação para commitar: ")
+    for x in logMemoria:
+        if t in x:
+            i=+1
+            break
+    logDisco.append(logMemoria[i])
+    # logDisco.append(logMemoria)
+    # logMemoria.clear()
 
 
 while aux != 's':
@@ -90,3 +96,4 @@ while aux != 's':
         commit()
     else:
         print("Programa encerrado")
+        break
