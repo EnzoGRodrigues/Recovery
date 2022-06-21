@@ -1,8 +1,8 @@
-from typing import List, Any
+import os
 
 logMemoria = []  # bufferLog
-logDisco: list[Any] = []  # Log do disco
-bufferDados: list[Any] = [7, 14, 21, 28, 35]  # Buffer de dados da memoria
+logDisco = []  # Log do disco
+bufferDados = [7, 14, 21, 28, 35]  # Buffer de dados da memoria
 discoDados = [7, 14, 21, 28, 35]  # Dados do disco
 redo = []
 undo = []
@@ -33,7 +33,7 @@ def update():
     t = input("Escolha a transação: ")
     i = int(input("Digite a posicao do elemento: "))
     newValue = int(input("Digite a idade atualizada: "))
-    logMemoria.append([t, i, "idade", discoDados[i - 1], newValue])
+    logMemoria[:] += ([t, i, "idade", discoDados[i - 1], newValue])
     bufferDados[i - 1] = newValue
 
 
@@ -50,10 +50,17 @@ def failure():
 
 def commit():
     t = input("Digite a transação que deseja commitar: ")
-    logDisco.append([x for x in logMemoria if t in x])
+    logDisco[:] += ([s for s in logMemoria if t in s])
+    redo[:] += ([s for s in logMemoria if t in s])  #
+    if os.path.exists('LogDisco.txt'):
+        f = open("LogDisco.txt", "w")
+        # for i in discoLog:
+        f.write(str(logDisco) + "\n")
+        f.close()
+
 
 while aux != 's':
-    print("a - Visualizar buffer do Log")
+    print("\na - Visualizar buffer do Log")
     print("b - Visualizar log do disco")
     print("c - Visualizar Dados da memoria")
     print("d - Visualizar Dados do disco")
@@ -65,7 +72,7 @@ while aux != 's':
     print("-------------------------------")
     print("s - Sair do programa")
     print("-------------------------------")
-    aux = input("Escolha uma opcao:\n")
+    aux = input("Escolha uma opcao: ")
 
     if aux == 'a':
         viewLogMemoria()
