@@ -72,6 +72,8 @@ def checkpoint(): # função que realiza o checkpoint
                 for i in logMemoria: # o for faz com que o i percorra a lista logMemoria
                     f.write(str(i)+"\n") # tudo o que o i encontrar na lista logMemoria, vai escrever no txtLogDisco
                 f.write(str("--> Ponto de CHECKPOINT <--\n")) # vai escrever a mensagem no txtLogDisco
+            dadosDisco[:] = list(dadosMemoria[:])
+            logDisco[:] = list(logMemoria[:])
         else:
             print("O arquivo \"logDisco.txt\" nao existe!") # se nao existir vai exibir essa mensagem na tela
         print("\n--> Checkpoint realizado com sucesso <--")  #imprime esta mensagem quando o checkpoint for utilizado pelo usuario
