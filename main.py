@@ -55,7 +55,7 @@ def commit(): # função que realiza o commit
             with open(txtLogDisco, 'w') as f: # se tiver, abre esse txt e escreve algo nele atraves do 'w'
                 for i in logDisco: # o i percorre o logDisco
                     f.write(str(i)+"\n") # f.write escreve tudo o i percorreu no txtLogDisco
-            print("--> Transação",t,"comitada com sucesso <--")
+            print("--> \nTransação",t,"comitada com sucesso <--")
         else:
             print("O arquivo \"logDisco.txt\" nao existe!")
 
@@ -95,7 +95,7 @@ def failure(): # função que realiza a falha
 
 
 def viewRedoUndo(): #funcao que mosta as transação REDO e UNDO
-    print("REDO",redo,\
+    print("\nREDO",redo,\
             "\nUNDO",undo)
 
 
