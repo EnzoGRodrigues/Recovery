@@ -55,7 +55,7 @@ def commit(): # função que realiza o commit
             with open(txtLogDisco, 'w') as f: # se tiver, abre esse txt e escreve algo nele atraves do 'w'
                 for i in logDisco: # o i percorre o logDisco
                     f.write(str(i)+"\n") # f.write escreve tudo o i percorreu no txtLogDisco
-            print("--> \nTransação",t,"comitada com sucesso <--")
+            print("\n--> Transação",t,"comitada com sucesso <--")
         else:
             print("O arquivo \"logDisco.txt\" nao existe!")
 
@@ -74,7 +74,7 @@ def checkpoint(): # função que realiza o checkpoint
                 f.write(str("--> Ponto de CHECKPOINT <--\n")) # vai escrever a mensagem no txtLogDisco
         else:
             print("O arquivo \"logDisco.txt\" nao existe!") # se nao existir vai exibir essa mensagem na tela
-        print("--> Checkpoint realizado com sucesso <--")  #imprime esta mensagem quando o checkpoint for utilizado pelo usuario
+        print("\n--> Checkpoint realizado com sucesso <--")  #imprime esta mensagem quando o checkpoint for utilizado pelo usuario
 
 
 
